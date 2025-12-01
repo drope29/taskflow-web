@@ -4,25 +4,38 @@ import { useEffect } from 'react';
 
 export function VLibras() {
   useEffect(() => {
+    // Carrega o script do VLibras apenas no lado do cliente
     const script = document.createElement('script');
     script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
     script.async = true;
-    document.head.appendChild(script);
-
-    const div = document.createElement('div');
-    div.setAttribute('vw', 'true');
-    div.setAttribute('class', 'vw-plugin');
-    div.setAttribute('data-active', 'true');
-    div.setAttribute('data-translation', 'true');
-    div.setAttribute('data-keyboard-shortcut', 'true');
-    document.body.appendChild(div);
+    script.onload = () => {
+      console.log('✅ VLibras carregado com sucesso');
+    };
+    script.onerror = () => {
+      console.error('❌ Falha ao carregar o VLibras');
+    };
+    
+    document.body.appendChild(script);
 
     return () => {
-      document.head.removeChild(script);
-      const plugin = document.querySelector('.vw-plugin');
-      if (plugin) document.body.removeChild(plugin);
+      document.body.removeChild(script);
     };
   }, []);
 
-  return null;
+  return (
+    <div
+      className="enable-vlibras"
+      data-vlibras="true"
+      data-translation="true"
+      data-autorun="false"
+      data-position="1"        // 1 = direita, 2 = esquerda
+      data-opacity="0.9"
+      data-accent-color="#10B981" // cor do seu branding (emerald-500)
+      data-toolbox="true"
+      data-keyboard="true"     // ✅ Atalho: Ctrl+Shift+L
+      aria-live="polite"
+      role="region"
+      aria-label="Widget de Libras - Tradução em tempo real"
+    ></div>
+  );
 }

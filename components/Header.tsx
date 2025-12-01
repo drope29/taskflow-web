@@ -15,19 +15,6 @@ export function Header() {
           TaskFlow
         </Link>
 
-        {/* Menu desktop */}
-        <nav className="hidden md:flex space-x-6">
-          <Link href="/#features" className="text-gray-700 hover:text-emerald-600">
-            Recursos
-          </Link>
-          <Link href="/#about" className="text-gray-700 hover:text-emerald-600">
-            Sobre
-          </Link>
-          <Link href="/#contact" className="text-gray-700 hover:text-emerald-600">
-            Contato
-          </Link>
-        </nav>
-
         {/* Botão de login (ícone) */}
         <Link href="/login" className="text-gray-700 hover:text-emerald-600">
           <LogIn size={24} />

@@ -1,26 +1,146 @@
+
+/* app/globals.css */
 @import "tailwindcss";
 
+/* ✅ Temas de acessibilidade */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ... variáveis padrão ... */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Tema padrão */
+[data-theme="default"] {
+  --bg-primary: #f9fafb;
+  --bg-card: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --border-color: #e5e7eb;
+  --btn-primary-bg: #059669;    /* emerald-600 */
+  --btn-primary-text: #ffffff;
+  --btn-secondary-bg: #e5e7eb;  /* gray-200 */
+  --btn-secondary-text: #374151; /* gray-700 */
+  --btn-hover-bg: #047857;      /* emerald-700 */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ✅ Tema Alto Contraste */
+[data-theme="high-contrast"] {
+  --bg-primary: #000000;
+  --bg-card: #111111;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --border-color: #444444;
+  --btn-primary-bg: #ffff00;    /* yellow-400 - alto contraste */
+  --btn-primary-text: #000000;  /* black */
+  --btn-secondary-bg: #ffffff;
+  --btn-secondary-text: #000000;
+  --btn-hover-bg: #ffcc00;      /* yellow-500 */
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ✅ Tema Escuro */
+[data-theme="dark"] {
+  --bg-primary: #111827;
+  --bg-card: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border-color: #374151;
+  --btn-primary-bg: #047857;    /* emerald-700 */
+  --btn-primary-text: #ffffff;
+  --btn-secondary-bg: #374151;  /* gray-600 */
+  --btn-secondary-text: #f9fafb; /* gray-100 */
+  --btn-hover-bg: #03664a;      /* emerald-800 */
+}
+
+/* ✅ Tema Dislexia */
+[data-theme="dyslexia"] {
+  --bg-primary: #f8f9fa;
+  --bg-card: #ffffff;
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --border-color: #dee2e6;
+  --btn-primary-bg: #d69e2e;    /* amber-600 */
+  --btn-primary-text: #ffffff;
+  --btn-secondary-bg: #fbbf24;  /* amber-400 */
+  --btn-secondary-text: #1a202c; /* gray-900 */
+  --btn-hover-bg: #b7791f;      /* amber-700 */
+}
+
+.btn-primary {
+  @apply bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] font-medium rounded-lg px-4 py-2 transition;
+}
+
+.btn-primary:hover {
+  @apply bg-[var(--btn-hover-bg)];
+}
+
+.btn-primary:focus {
+  @apply ring-2 ring-offset-2 ring-[var(--btn-primary-bg)]/50;
+}
+
+.btn-secondary {
+  @apply bg-[var(--btn-secondary-bg)] text-[var(--btn-secondary-text)] font-medium rounded-lg px-4 py-2 border border-[var(--border-color)] transition;
+}
+
+.btn-secondary:hover {
+  @apply opacity-90;
+}
+
+.btn-secondary:focus {
+  @apply ring-2 ring-offset-2 ring-[var(--btn-secondary-bg)]/50;
+}
+
+/* ✅ Para toggles/switches */
+.toggle-switch {
+  @apply relative inline-flex h-6 w-11 items-center rounded-full;
+}
+
+.toggle-switch[aria-pressed="true"] {
+  @apply bg-[var(--btn-primary-bg)];
+}
+
+.toggle-switch[aria-pressed="false"] {
+  @apply bg-[var(--border-color)];
+}
+
+.toggle-thumb {
+  @apply inline-block h-4 w-4 transform rounded-full bg-white transition;
+}
+
+.toggle-switch[aria-pressed="true"] .toggle-thumb {
+  @apply translate-x-6;
+}
+
+.toggle-switch[aria-pressed="false"] .toggle-thumb {
+  @apply translate-x-1;
+}
+
+/* Força o botão do VLibras a ficar na lateral esquerda */
+[vw-access-button] {
+  position: fixed !important;
+  top: 50% !important;
+  left: 20px !important;
+  transform: translateY(-50%) !important;
+
+  height: 45px !important;
+  z-index: 999999999 !important;
+}
+
+/* Ícone menor */
+[vw-access-button] img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Força o painel a abrir no lado esquerdo */
+[vw-plugin-wrapper] {
+  position: fixed !important;
+  top: 50% !important;
+  left: 80px !important;
+  transform: translateY(-50%) !important;
+
+  z-index: 999999999 !important;
+}
+
+/* Reduz o tamanho do painel */
+.vw-plugin-top-wrapper {
+  transform: scale(0.8) !important;
+  transform-origin: top left !important;
 }

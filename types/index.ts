@@ -14,9 +14,10 @@ export interface Task {
   id: string;
   userId: string;
   title: string;
-  description: string;
-  dueDate: string; // ISO string (ex: "2025-11-30")
+  description?: string;
+  dueDate?: string;
   priority: 'low' | 'medium' | 'high';
-  status: 'todo' | 'doing' | 'done'; // para Kanban
+  status: 'todo' | 'in-progress' | 'done'; // usado para coluna
+  inKanban?: boolean; // ✅ NOVO: controla se está no quadro ou na lista lateral
   subtasks: Subtask[];
 }

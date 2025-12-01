@@ -11,13 +11,13 @@ export function Footer() {
             <p className="text-gray-400">Gerencie suas tarefas com inteligência e simplicidade.</p>
           </div>
           <div className="flex space-x-6">
-            <Link href="/privacy" className="text-gray-400 hover:text-white">
+            <Link href="#" className="text-gray-400 hover:text-white">
               Privacidade
             </Link>
-            <Link href="/terms" className="text-gray-400 hover:text-white">
+            <Link href="#" className="text-gray-400 hover:text-white">
               Termos
             </Link>
-            <Link href="/contact" className="text-gray-400 hover:text-white">
+            <Link href="#" className="text-gray-400 hover:text-white">
               Contato
             </Link>
           </div>
